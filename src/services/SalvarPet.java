@@ -35,8 +35,8 @@ public class SalvarPet {
             bw.write("2 - " +pet.getTipo().getTIPO()); bw.newLine();
             bw.write("3 - " +pet.getSexo().getSEXO()); bw.newLine();
             bw.write("4 - " +pet.getEndereco()); bw.newLine();
-            bw.write("5 - " +pet.getIdade() + " anos"); bw.newLine();
-            bw.write("6 - " +pet.getPeso() + "kg"); bw.newLine();
+            bw.write("5 - " +pet.getIdade()); bw.newLine();
+            bw.write("6 - " +pet.getPeso()); bw.newLine();
             bw.write("7 - " +pet.getRaca()); bw.newLine();
 
         } catch (IOException e) {

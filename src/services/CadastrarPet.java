@@ -111,7 +111,6 @@ public class CadastrarPet {
             } while ((cidade == null || cidade.trim().isEmpty()));
 
             String endereco = rua.concat(", " + numero + ", " + bairro + " - " + cidade);
-            System.out.println(endereco);
 
             //IDADE
             line = br.readLine();
@@ -119,20 +118,25 @@ public class CadastrarPet {
             String idade = input.nextLine();
             if (idade == null || idade.trim().isEmpty()) {
                 idade = Pet.NULL;
-            } else if (idade.matches("^0+([,.]\\d)?$")) {
+            } else if (idade.matches("0")) {
+                throw new IllegalArgumentException("A idade não pode ser 0!");
+            } else if (idade.matches("^0+([,.]\\d+)?$")) {
                 idade = idade.replace(',', '.');
-            } else if (idade.matches("^\\d+([,.]\\d)+$")) {
-                throw new RuntimeException("Insira numeros inteiros");
+                idade = idade + " anos";
             } else if (idade.matches("\\d+")) {
                 int idadeInt = Integer.parseInt(idade);
                 if (idadeInt < 0 || idadeInt > 20) {
                     throw new RuntimeException("Insira uma idade entre 1 a 20 anos.");
+                } else if (idadeInt == 1) {
+                    idade = idade + " ano";
+                } else {
+                    idade = idade + " anos";
                 }
-
             } else {
                 throw new RuntimeException("Insira apenas números inteiros.");
             }
-              // IDADE (Permite idades quebradas. A de cima, só idade qiebrada até 1 ano)
+
+            // IDADE (Permite idades quebradas. A de cima, só idade quebrada até 1 ano)
 //            line = br.readLine();
 //            System.out.println(line);
 //            String idade = input.nextLine();
@@ -157,13 +161,15 @@ public class CadastrarPet {
             String peso = input.nextLine();
             if (peso == null || peso.trim().isEmpty()) {
                 peso = Pet.NULL;
-                System.out.println(peso);
             } else if (peso.matches("^\\d+([,.]\\d)?$")) {
                 peso = peso.replace(',', '.');
 
                 double pesoDouble = Double.parseDouble(peso);
                 if (pesoDouble < 0.5 || pesoDouble > 60) {
                     throw new RuntimeException("Peso inválido! Insira um peso entre 0.5kg e 60kg.");
+                }
+                else {
+                    peso = peso + "kg";
                 }
 
             } else {
@@ -181,6 +187,7 @@ public class CadastrarPet {
             }
 
             pet = new Pet(nomeCompleto, tipoPet, sexoPet, endereco, idade, peso, raca);
+            SalvarPet.writerPet(pet);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
