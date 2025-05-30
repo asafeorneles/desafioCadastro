@@ -23,10 +23,6 @@ public class Pet {
         this.raca = raca;
     }
 
-    public Pet(String nomeCompleto) {
-        this.nomeCompleto = nomeCompleto;
-    }
-
     public String getNomeCompleto() {
         return nomeCompleto;
     }
