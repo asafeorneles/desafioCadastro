@@ -4,11 +4,14 @@ import src.enuns.SexoPet;
 import src.enuns.TipoPet;
 import src.model.Pet;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class CadastrarPet {
-    public static void CadastrarPet() {
+    public static void cadastrarPet() {
         Scanner input = new Scanner(System.in);
         Pet pet = null;
         File file = new File("src/data/formulario.txt");
@@ -16,7 +19,8 @@ public class CadastrarPet {
         try (FileReader fr = new FileReader(file);
              BufferedReader br = new BufferedReader(fr)) {
 
-            String line = br.readLine(); //Nome
+            //NOME
+            String line = br.readLine();
             System.out.println(line);
             String nomeCompleto = input.nextLine();
             if (nomeCompleto == null || nomeCompleto.trim().isEmpty()) {
@@ -27,62 +31,90 @@ public class CadastrarPet {
                 throw new IllegalArgumentException("Informe o nome e o sobrenome.");
             }
 
-            line = br.readLine(); //Tipo
-            System.out.println(line);
-            String tipo = input.nextLine();
+            //TIPO
+            line = br.readLine();
+            String tipo;
             TipoPet tipoPet = null;
-            if (tipo == null || tipo.trim().isEmpty()){
-                tipo = Pet.NULL;
-            }
-            else if (tipo.equalsIgnoreCase("Cachorro")){
-                tipoPet = TipoPet.CACHORRO;
+            do {
+                System.out.println(line);
+                tipo = input.nextLine();
+                if (tipo == null || tipo.trim().isEmpty()){
+                    System.out.println("O tipo do animal precisa ser inserido!");
+                }
+            }while (tipo == null || tipo.trim().isEmpty());
 
+            if (tipo.equalsIgnoreCase("Cachorro")){
+                tipoPet = TipoPet.CACHORRO;
             } else if (tipo.equalsIgnoreCase("Gato")){
                 tipoPet = TipoPet.GATO;
             } else {
                 throw new IllegalArgumentException("Cadastre Cachorro ou Gato!");
             }
 
-            line = br.readLine(); //Sexo
-            System.out.println(line);
-            System.out.println("Digite 'F' para Fêmea e 'M' para Macho.");
-            String sexo = input.nextLine();
+            //SEXO
+            line = br.readLine();
+            String sexo;
             SexoPet sexoPet = null;
-            if (sexo == null || sexo.trim().isEmpty()){
-                tipo = Pet.NULL;
-            } else if (sexo.equalsIgnoreCase("F")) {
-                sexo = SexoPet.FEMININO.getSEXO();
+            do {
+                System.out.println(line);
+                System.out.println("Digite 'F' para Fêmea e 'M' para Macho.");
+                sexo = input.nextLine();
+                if (sexo == null || sexo.trim().isEmpty()){
+                    System.out.println("Informe o sexo do animal!");
+                }
+            }while (sexo == null || sexo.trim().isEmpty());
+
+            if (sexo.equalsIgnoreCase("F")) {
+                sexoPet = SexoPet.FEMININO;
             } else if (sexo.equalsIgnoreCase("M")) {
-                sexo = SexoPet.MASCULINO.getSEXO();
+                sexoPet = SexoPet.MASCULINO;
             } else {
                 throw new IllegalArgumentException("Sexo inválido! Insira 'F' ou 'M'.");
             }
 
-            line = br.readLine(); // Endereço (Tratar caso rua, bairro e cidade seja vazio ou numeros)
+            //ENDEREÇO
+            line = br.readLine();
             System.out.println(line);
-            System.out.println("Informe a rua:");
-            String rua = input.nextLine();
+            String rua;
+            String numero;
+            String bairro;
+            String cidade;
+            do {
+                System.out.println("Informe a rua:");
+                rua = input.nextLine();
+                if ((rua == null || rua.trim().isEmpty())){
+                    System.out.println("A rua não pode ficar vazia!");
+                }
+            }while ((rua == null || rua.trim().isEmpty()));
+
             System.out.println("Número:");
-            String numero = input.nextLine();
+            numero = input.nextLine();
             if (numero == null || numero.trim().isEmpty()){
                 numero = Pet.NULL;
             }
             else if (!numero.matches("\\d+")) {
                 throw new IllegalArgumentException("Insira apenas números!");
             }
+            do {
+                System.out.println("Bairro:");
+                bairro = input.nextLine();
+                if ((bairro == null || bairro.trim().isEmpty())){
+                    System.out.println("O bairro não pode ficar vazio!");
+                }
+            }while ((bairro == null || bairro.trim().isEmpty()));
+            do {
+                System.out.println("Cidade");
+                cidade = input.nextLine();
+                if ((cidade == null || cidade.trim().isEmpty())){
+                    System.out.println("A cidade não pode ficar vazia!");
+                }
+            } while ((cidade == null || cidade.trim().isEmpty()));
 
-            System.out.println("Bairro:");
-            String bairro = input.nextLine();
-            System.out.println("Cidade");
-            String cidade = input.nextLine();
-
-            String endereco = rua.concat(" " + numero + " " + bairro + " " + cidade);
-            if (endereco == null || endereco.trim().isEmpty()) {
-                endereco = Pet.NULL;
-            }
+            String endereco = rua.concat(", " + numero + ", " + bairro + " - " + cidade);
             System.out.println(endereco);
 
-            line = br.readLine(); //Idade
+            //IDADE
+            line = br.readLine();
             System.out.println(line);
             String idade = input.nextLine();
             if (idade == null || idade.trim().isEmpty()) {
@@ -100,8 +132,8 @@ public class CadastrarPet {
             } else {
                 throw new RuntimeException("Insira apenas números inteiros.");
             }
-
-//            line = br.readLine(); //Idade
+              // IDADE (Permite idades quebradas. A de cima, só idade qiebrada até 1 ano)
+//            line = br.readLine();
 //            System.out.println(line);
 //            String idade = input.nextLine();
 //            if (idade == null || idade.trim().isEmpty()){
@@ -119,7 +151,8 @@ public class CadastrarPet {
 //                throw new RuntimeException("Insira apenas números.");
 //            }
 
-            line = br.readLine(); //Peso
+            // PESO
+            line = br.readLine();
             System.out.println(line);
             String peso = input.nextLine();
             if (peso == null || peso.trim().isEmpty()) {
@@ -137,7 +170,8 @@ public class CadastrarPet {
                 throw new RuntimeException("Insira apenas números.");
             }
 
-            line = br.readLine(); // Raça
+            //RAÇA
+            line = br.readLine();
             System.out.println(line);
             String raca = input.nextLine();
             if (raca == null || raca.trim().isEmpty()) {
