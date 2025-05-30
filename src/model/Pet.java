@@ -23,7 +23,11 @@ public class Pet {
         this.raca = raca;
     }
 
-    public String getnomeCompleto() {
+    public Pet(String nomeCompleto) {
+        this.nomeCompleto = nomeCompleto;
+    }
+
+    public String getNomeCompleto() {
         return nomeCompleto;
     }
 
@@ -33,6 +37,14 @@ public class Pet {
 
     public TipoPet getTipo() {
         return tipo;
+    }
+
+    public SexoPet getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(SexoPet sexo) {
+        this.sexo = sexo;
     }
 
     public void setTipo(TipoPet tipo) {

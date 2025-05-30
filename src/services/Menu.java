@@ -18,7 +18,7 @@ public class Menu {
             opcao = input.nextInt();
 
             switch (opcao){
-                case 1: CadastrarPet.CadastrarPet(); break;
+                case 1: CadastrarPet.cadastrarPet(); break;
                 case 2:
                 case 3:
                 case 4:
