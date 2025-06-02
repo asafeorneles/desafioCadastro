@@ -5,15 +5,15 @@ import src.enuns.TipoPet;
 
 public class Pet {
     protected String nomeCompleto;
-    protected String tipo;
-    protected String sexo;
+    protected TipoPet tipo;
+    protected SexoPet sexo;
     protected String endereco;
     protected String idade;
     protected String peso;
     protected String raca;
     public static final String NULL = "NÃO INFORMADO";
 
-    public Pet(String nomeCompleto, String tipo, String sexo, String endereco, String idade, String peso, String raca) {
+    public Pet(String nomeCompleto, TipoPet tipo, SexoPet sexo, String endereco, String idade, String peso, String raca) {
         this.nomeCompleto = nomeCompleto;
         this.tipo = tipo;
         this.sexo = sexo;
@@ -31,19 +31,19 @@ public class Pet {
         this.nomeCompleto = nomeCompleto;
     }
 
-    public String getTipo() {
+    public TipoPet getTipo() {
         return tipo;
     }
 
-    public String getSexo() {
+    public SexoPet getSexo() {
         return sexo;
     }
 
-    public void setSexo(String sexo) {
+    public void setSexo(SexoPet sexo) {
         this.sexo = sexo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(TipoPet tipo) {
         this.tipo = tipo;
     }
 

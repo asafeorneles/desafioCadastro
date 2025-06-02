@@ -186,8 +186,10 @@ public class CadastrarPet {
                 throw new IllegalArgumentException("Utilize apenas letras e espaços em branco entre as palavras");
             }
 
-            pet = new Pet(nomeCompleto, tipo, sexo, endereco, idade, peso, raca);
+            pet = new Pet(nomeCompleto, tipoPet, sexoPet, endereco, idade, peso, raca);
             SalvarPet.writerPet(pet);
+
+            Menu.exibirMenu();
 
         } catch (IOException e) {
             throw new RuntimeException(e);

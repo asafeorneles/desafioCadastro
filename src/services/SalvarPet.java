@@ -22,19 +22,12 @@ public class SalvarPet {
         String fileName = (now.format(df) + "-" + nomePetUpper);
         String filePathName = ("src/petsCadastrados/" + fileName + ".TXT");
         File file = new File(filePathName);
-        File fileFiles = new File("src/petsCadastrados/FILENAMES.txt");
-        try {
-            file.createNewFile();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
         try (FileWriter fw = new FileWriter(file);
              BufferedWriter bw = new BufferedWriter(fw)){
 
             bw.write("1 - " + pet.getNomeCompleto()); bw.newLine();
-            bw.write("2 - " +pet.getTipo()); bw.newLine();
-            bw.write("3 - " +pet.getSexo()); bw.newLine();
+            bw.write("2 - " +pet.getTipo().getTIPO()); bw.newLine();
+            bw.write("3 - " +pet.getSexo().getSEXO()); bw.newLine();
             bw.write("4 - " +pet.getEndereco()); bw.newLine();
             bw.write("5 - " +pet.getIdade()); bw.newLine();
             bw.write("6 - " +pet.getPeso()); bw.newLine();
@@ -44,19 +37,19 @@ public class SalvarPet {
             throw new RuntimeException(e);
         }
 
-        writerFiles(fileFiles, filePathName);
-    }
-
-    public static void writerFiles(File fileFiles, String filePathName){
-        try (FileWriter fw = new FileWriter(fileFiles, true);
-             BufferedWriter bw = new BufferedWriter(fw)){
-
-            bw.write(filePathName);
-            bw.newLine();
-            bw.flush();
-
-        } catch (IOException e) {
+        File filePets = new File( "src/petsCadastrados/PETSGERAL.txt");
+        try (FileWriter fw = new FileWriter(filePets, true);
+             BufferedWriter bw = new BufferedWriter(fw)) {
+            bw.write("Nome: " + pet.getNomeCompleto() + " ");
+            bw.write("Tipo: " +pet.getTipo().getTIPO() + " ");
+            bw.write("Sexo: " +pet.getSexo().getSEXO() + " ");
+            bw.write("Endereço: " +pet.getEndereco() + " ");
+            bw.write("Idade: " +pet.getIdade() + " ");
+            bw.write("Peso: " +pet.getPeso() + " ");
+            bw.write("Raça: " +pet.getRaca()); bw.newLine(); bw.flush();
+        }catch (IOException e){
             throw new RuntimeException(e);
         }
     }
+
 }

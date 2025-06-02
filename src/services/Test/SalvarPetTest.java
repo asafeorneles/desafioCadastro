@@ -1,4 +1,4 @@
-package src.services;
+package src.services.Test;
 
 import src.enuns.SexoPet;
 import src.enuns.TipoPet;
@@ -13,8 +13,8 @@ import java.time.format.DateTimeFormatter;
 
 public class SalvarPetTest {
     public static void main(String[] args) {
-        Pet pet = new Pet("Cassandra da Silva", TipoPet.GATO.getTIPO(), SexoPet.MASCULINO.getSEXO(), "Rua x, 90, Ouro Minas - BH" , "12" , "28.6" , "Gato do Mato");
-        Pet pet2 = new Pet("Peria Orneles", TipoPet.CACHORRO.getTIPO(), SexoPet.MASCULINO.getSEXO(), "Rua y, 56, Belmonte - BH" , "3" , "12" , "Vira Lata");
+        Pet pet = new Pet("Cassandra da Silva", TipoPet.GATO, SexoPet.MASCULINO, "Rua x, 90, Ouro Minas - BH" , "12" , "28.6" , "Gato do Mato");
+        Pet pet2 = new Pet("Peria Orneles", TipoPet.CACHORRO, SexoPet.MASCULINO, "Rua y, 56, Belmonte - BH" , "3" , "12" , "Vira Lata");
         writerPet(pet2);
     }
     public static void writerPet(Pet pet){
@@ -33,8 +33,8 @@ public class SalvarPetTest {
              BufferedWriter bw = new BufferedWriter(fw)){
 
             bw.write("1 - " + pet.getNomeCompleto()); bw.newLine();
-            bw.write("2 - " +pet.getTipo()); bw.newLine();
-            bw.write("3 - " +pet.getSexo()); bw.newLine();
+            bw.write("2 - " +pet.getTipo().getTIPO()); bw.newLine();
+            bw.write("3 - " +pet.getSexo().getSEXO()); bw.newLine();
             bw.write("4 - " +pet.getEndereco()); bw.newLine();
             bw.write("5 - " +pet.getIdade()); bw.newLine();
             bw.write("6 - " +pet.getPeso()); bw.newLine();
@@ -48,8 +48,8 @@ public class SalvarPetTest {
         try (FileWriter fw = new FileWriter(filePets, true);
         BufferedWriter bw = new BufferedWriter(fw)) {
             bw.write("Nome: " + pet.getNomeCompleto() + " ");
-            bw.write("Tipo: " +pet.getTipo() + " ");
-            bw.write("Sexo: " +pet.getSexo() + " ");
+            bw.write("Tipo: " +pet.getTipo().getTIPO() + " ");
+            bw.write("Sexo: " +pet.getSexo().getSEXO() + " ");
             bw.write("Endereço: " +pet.getEndereco() + " ");
             bw.write("Idade: " +pet.getIdade() + " ");
             bw.write("Peso: " +pet.getPeso() + " ");
@@ -57,21 +57,6 @@ public class SalvarPetTest {
         }catch (IOException e){
             throw new RuntimeException(e);
         }
-
-//        File fileFiles = new File("src/petsCadastrados/FILENAMES.txt");
-//        writerFiles(fileFiles, filePathName);
     }
 
-//    public static void writerFiles(File fileFiles, String filePathName){
-//        try (FileWriter fw = new FileWriter(fileFiles, true);
-//             BufferedWriter bw = new BufferedWriter(fw)){
-//
-//            bw.write(filePathName);
-//            bw.newLine();
-//            bw.flush();
-//
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
 }

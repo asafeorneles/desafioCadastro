@@ -1,9 +1,10 @@
-package src.services;
+package src.services.Test;
 
 
 import src.enuns.SexoPet;
 import src.enuns.TipoPet;
 import src.model.Pet;
+import src.services.SalvarPet;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -187,7 +188,7 @@ public class CadastrarPetTest {
                 throw new IllegalArgumentException("Utilize apenas letras e espaços em branco entre as palavras");
             }
 
-            pet = new Pet(nomeCompleto, tipo, sexo, endereco, idade, peso, raca);
+            pet = new Pet(nomeCompleto, tipoPet, sexoPet, endereco, idade, peso, raca);
             SalvarPet.writerPet(pet);
 
         } catch (IOException e) {
