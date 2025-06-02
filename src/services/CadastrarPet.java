@@ -182,7 +182,7 @@ public class CadastrarPet {
             String raca = input.nextLine();
             if (raca == null || raca.trim().isEmpty()) {
                 raca = Pet.NULL;
-            } else if (!raca.matches("^[a-zA-ZÀ-ÿ]+(?:\\s[a-zA-ZÀ-ÿ]+)*$")) {
+            } else if (!raca.matches("^[a-zA-ZÀ-ÿ]+(?:[\\s-][a-zA-ZÀ-ÿ]+)*$")) {
                 throw new IllegalArgumentException("Utilize apenas letras e espaços em branco entre as palavras");
             }
 
