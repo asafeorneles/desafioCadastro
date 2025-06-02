@@ -137,6 +137,7 @@ public class BuscarPetTest {
 
         File file = new File("src/petsCadastrados/PETSGERAL.txt");
         boolean encontrou = false;
+        int cont =1;
 
         try (FileReader fr = new FileReader(file);
              BufferedReader br = new BufferedReader(fr)) {
@@ -161,7 +162,8 @@ public class BuscarPetTest {
                             String pesoP = matcherTodosCampos.group(6);
                             String racaP = matcherTodosCampos.group(7);
 
-                            System.out.println(nomeP + " - " + tipoP + " - " + sexoP + " - " + enderecoP + " - " + idadeP + " - " + pesoP + " - " + racaP);
+                            System.out.println(cont + ". " + nomeP + " - " + tipoP + " - " + sexoP + " - " + enderecoP + " - " + idadeP + " - " + pesoP + " - " + racaP);
+                            cont++;
                             encontrou = true;
                         }
                     }
@@ -248,7 +250,7 @@ public class BuscarPetTest {
         String buscaRegex2 = input.nextLine().trim();
 
         File file = new File("src/petsCadastrados/PETSGERAL.txt");
-
+        int cont = 1;
         boolean encontrou = false;
 
         try (FileReader fr = new FileReader(file);
@@ -278,7 +280,8 @@ public class BuscarPetTest {
                             String pesoP = matcher.group(6);
                             String racaP = matcher.group(7);
 
-                            System.out.println(nomeP + " - " + tipoP + " - " + sexoP + " - " + enderecoP + " - " + idadeP + " - " + pesoP + " - " + racaP);
+                            System.out.println(cont + ". " + nomeP + " - " + tipoP + " - " + sexoP + " - " + enderecoP + " - " + idadeP + " - " + pesoP + " - " + racaP);
+                            cont ++;
                             encontrou = true;
                         }
                     }
