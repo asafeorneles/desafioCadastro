@@ -20,8 +20,9 @@ public class SalvarPet {
             nomePetUpper += nome.toUpperCase();
         }
         String fileName = (now.format(df) + "-" + nomePetUpper);
-
-        File file = new File("src/petsCadastrados/" + fileName+ ".TXT");
+        String filePathName = ("src/petsCadastrados/" + fileName + ".TXT");
+        File file = new File(filePathName);
+        File fileFiles = new File("src/petsCadastrados/FILENAMES.txt");
         try {
             file.createNewFile();
         } catch (IOException e) {
@@ -32,12 +33,27 @@ public class SalvarPet {
              BufferedWriter bw = new BufferedWriter(fw)){
 
             bw.write("1 - " + pet.getNomeCompleto()); bw.newLine();
-            bw.write("2 - " +pet.getTipo().getTIPO()); bw.newLine();
-            bw.write("3 - " +pet.getSexo().getSEXO()); bw.newLine();
+            bw.write("2 - " +pet.getTipo()); bw.newLine();
+            bw.write("3 - " +pet.getSexo()); bw.newLine();
             bw.write("4 - " +pet.getEndereco()); bw.newLine();
             bw.write("5 - " +pet.getIdade()); bw.newLine();
             bw.write("6 - " +pet.getPeso()); bw.newLine();
-            bw.write("7 - " +pet.getRaca()); bw.newLine();
+            bw.write("7 - " +pet.getRaca()); bw.flush();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        writerFiles(fileFiles, filePathName);
+    }
+
+    public static void writerFiles(File fileFiles, String filePathName){
+        try (FileWriter fw = new FileWriter(fileFiles, true);
+             BufferedWriter bw = new BufferedWriter(fw)){
+
+            bw.write(filePathName);
+            bw.newLine();
+            bw.flush();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
