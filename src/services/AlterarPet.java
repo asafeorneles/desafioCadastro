@@ -551,7 +551,7 @@ public class AlterarPet {
                     pet.setEndereco(endereco);
                     break;
             }
-            SalvarPetTest.rewriterPet(pet, fileName);
+            SalvarPet.rewriterPet(pet, fileName);
         } catch (RuntimeException e){
             System.out.println("Erro ao fazer alteração do pet." + e.getMessage());
         }
