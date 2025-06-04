@@ -3,6 +3,7 @@ package src.services.Test;
 import src.enuns.SexoPet;
 import src.enuns.TipoPet;
 import src.model.Pet;
+import src.services.Menu;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -127,9 +128,11 @@ public class SalvarPetTest {
         File fileRenomed = new File(filePathName);
         boolean isFileRenomed = fileAntigo.renameTo(fileRenomed);
         if (isFileRenomed){
-            System.out.println("Arquivo renomeado com sucesso!");
+            System.out.println("Pet atualizado com sucesso!!");
         }else {
-            System.out.println("Erro ao renomear arquivo");
+            System.out.println("Erro ao atualizar arquivo do pet");
         }
+
+        Menu.exibirMenu();
     }
 }
