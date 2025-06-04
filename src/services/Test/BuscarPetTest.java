@@ -144,13 +144,13 @@ public class BuscarPetTest {
             String line;
             while ((line = br.readLine()) != null) {
 
-                Pattern pattern = Pattern.compile(atributo + ":\\s*(.+?)(\\s+\\w+:|$)", Pattern.CASE_INSENSITIVE);
+                Pattern pattern = Pattern.compile(atributo + ":\\s*(.*?)(?:\\s[A-Za-zÀ-ÿ]+:|\\s*\\/|$)", Pattern.CASE_INSENSITIVE);
                 Matcher matcher = pattern.matcher(line);
 
                 if (line.contains("Tipo: " + tipo) && matcher.find()) {
                     String valorBusca = matcher.group(1).trim(); // Para especificar no regex o que queremos buscar. Neste caso, o que vier depois do atributo
                     if (valorBusca.toLowerCase().contains(buscaRegex.toLowerCase())) {
-                        Pattern todosCampos = Pattern.compile("Nome: (.*?) Tipo: (.*?) Sexo: (.*?) Endereço: (.*?) Idade: (.*?) Peso: (.*?) Raça: (.*)", Pattern.CASE_INSENSITIVE);
+                        Pattern todosCampos = Pattern.compile("Nome: (.*?) Tipo: (.*?) Sexo: (.*?) Endereço: (.*?) Idade: (.*?) Peso: (.*?) Raça: ([^/]+)", Pattern.CASE_INSENSITIVE);
                         Matcher matcherTodosCampos = todosCampos.matcher(line);
 
                         if (matcherTodosCampos.find()){
@@ -170,7 +170,7 @@ public class BuscarPetTest {
                 }
             }
 
-            if (encontrou == false){
+            if (!encontrou){
                 System.out.println("Nenhum resultado encontrado.");
             }
 
@@ -258,8 +258,8 @@ public class BuscarPetTest {
             String line;
             while ((line = br.readLine()) != null) {
 
-                Pattern pattern1 = Pattern.compile(atributo1 + ":\\s*(.+?)(\\s+\\w+:|$)", Pattern.CASE_INSENSITIVE);
-                Pattern pattern2 = Pattern.compile(atributo2 + ":\\s*(.+?)(\\s+\\w+:|$)", Pattern.CASE_INSENSITIVE);
+                Pattern pattern1 = Pattern.compile(atributo1 + ":\\s*(.*?)(?:\\s[A-Za-zÀ-ÿ]+:|\\s*\\/|$)", Pattern.CASE_INSENSITIVE);
+                Pattern pattern2 = Pattern.compile(atributo2 + ":\\s*(.*?)(?:\\s[A-Za-zÀ-ÿ]+:|\\s*\\/|$)", Pattern.CASE_INSENSITIVE);
                 Matcher matcher1 = pattern1.matcher(line);
                 Matcher matcher2 = pattern2.matcher(line);
 
@@ -268,7 +268,7 @@ public class BuscarPetTest {
                     String valorCampo2 = matcher2.group(1);
 
                     if (valorCampo1.toLowerCase().contains(buscaRegex1.toLowerCase()) && valorCampo2.toLowerCase().contains(buscaRegex2.toLowerCase())){
-                        Pattern todosCampos = Pattern.compile("Nome: (.*?) Tipo: (.*?) Sexo: (.*?) Endereço: (.*?) Idade: (.*?) Peso: (.*?) Raça: (.*)", Pattern.CASE_INSENSITIVE);
+                        Pattern todosCampos = Pattern.compile("Nome: (.*?) Tipo: (.*?) Sexo: (.*?) Endereço: (.*?) Idade: (.*?) Peso: (.*?) Raça: ([^/]+)", Pattern.CASE_INSENSITIVE);
                         Matcher matcher = todosCampos.matcher(line);
 
                         if (matcher.find()){
@@ -287,7 +287,7 @@ public class BuscarPetTest {
                     }
                 }
             }
-            if (encontrou == false){
+            if (!encontrou){
                 System.out.println("Nenhum resultado encontrado.");
             }
 

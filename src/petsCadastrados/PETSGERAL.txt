@@ -1,0 +1,3 @@
+Nome: Julieta Dutra Tipo: Gato Sexo: Fêmea Endereço: Rua Ilha de Malta, 30, São Gabriel - BH Idade: 6 anos Peso: 18.5kg Raça: Siamês / 20250602T2017-JULIETADUTRA.TXT
+Nome: Luuk Davi Tipo: Cachorro Sexo: Macho Endereço: Rua Ilha de Malta, 30, São Gabriel - BH Idade: 8 anos Peso: 35kg Raça: Vira Lata / 20250602T2013-LUFFYDAVI.TXT
+Nome: Perião Orneles Tipo: Cachorro Sexo: Macho Endereço: Rua Nossa Senhora Visitadora, 80, Ouro Minas - BH Idade: 2 anos Peso: 1kg Raça: NÃO INFORMADO / 20250602T2011-PERIÃOORNELES.TXT

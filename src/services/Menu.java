@@ -1,5 +1,7 @@
 package src.services;
 
+import src.services.Test.BuscarPetTest;
+
 import java.util.Scanner;
 
 public class Menu {
@@ -19,10 +21,10 @@ public class Menu {
 
             switch (opcao){
                 case 1: CadastrarPet.cadastrarPet(); break;
-                case 2:
+                case 2: AlterarPet.buscarPetMenu(); break;
                 case 3:
                 case 4:
-                case 5: BuscarPet.buscarPetMenu(); break;
+                case 5: BuscarPetTest.buscarPetMenu(); break;
                 case 6: System.out.println("Saindo do programa..."); break;
                 default: System.out.println("Escolha uma opção de 1 a 6!"); break;
             }
