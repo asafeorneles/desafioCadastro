@@ -133,20 +133,20 @@ public class BuscarPet {
 
         File file = new File("src/petsCadastrados/PETSGERAL.txt");
         boolean encontrou = false;
-        int cont = 1;
+        int cont =1;
 
         try (FileReader fr = new FileReader(file);
              BufferedReader br = new BufferedReader(fr)) {
             String line;
             while ((line = br.readLine()) != null) {
 
-                Pattern pattern = Pattern.compile(atributo + ":\\s*(.+?)(\\s+\\w+:|$)", Pattern.CASE_INSENSITIVE);
+                Pattern pattern = Pattern.compile(atributo + ":\\s*(.*?)(?:\\s[A-Za-zÀ-ÿ]+:|\\s*\\/|$)", Pattern.CASE_INSENSITIVE);
                 Matcher matcher = pattern.matcher(line);
 
                 if (line.contains("Tipo: " + tipo) && matcher.find()) {
                     String valorBusca = matcher.group(1).trim(); // Para especificar no regex o que queremos buscar. Neste caso, o que vier depois do atributo
                     if (valorBusca.toLowerCase().contains(buscaRegex.toLowerCase())) {
-                        Pattern todosCampos = Pattern.compile("Nome: (.*?) Tipo: (.*?) Sexo: (.*?) Endereço: (.*?) Idade: (.*?) Peso: (.*?) Raça: (.*)", Pattern.CASE_INSENSITIVE);
+                        Pattern todosCampos = Pattern.compile("Nome: (.*?) Tipo: (.*?) Sexo: (.*?) Endereço: (.*?) Idade: (.*?) Peso: (.*?) Raça: ([^/]+)", Pattern.CASE_INSENSITIVE);
                         Matcher matcherTodosCampos = todosCampos.matcher(line);
 
                         if (matcherTodosCampos.find()){
@@ -158,9 +158,9 @@ public class BuscarPet {
                             String pesoP = matcherTodosCampos.group(6);
                             String racaP = matcherTodosCampos.group(7);
 
-                            System.out.println(cont + ". " +nomeP + " - " + tipoP + " - " + sexoP + " - " + enderecoP + " - " + idadeP + " - " + pesoP + " - " + racaP);
-                            encontrou = true;
+                            System.out.println(cont + ". " + nomeP + " - " + tipoP + " - " + sexoP + " - " + enderecoP + " - " + idadeP + " - " + pesoP + " - " + racaP);
                             cont++;
+                            encontrou = true;
                         }
                     }
                 }
@@ -246,16 +246,16 @@ public class BuscarPet {
         String buscaRegex2 = input.nextLine().trim();
 
         File file = new File("src/petsCadastrados/PETSGERAL.txt");
-        boolean encontrou = false;
         int cont = 1;
+        boolean encontrou = false;
 
         try (FileReader fr = new FileReader(file);
              BufferedReader br = new BufferedReader(fr)) {
             String line;
             while ((line = br.readLine()) != null) {
 
-                Pattern pattern1 = Pattern.compile(atributo1 + ":\\s*(.+?)(\\s+\\w+:|$)", Pattern.CASE_INSENSITIVE);
-                Pattern pattern2 = Pattern.compile(atributo2 + ":\\s*(.+?)(\\s+\\w+:|$)", Pattern.CASE_INSENSITIVE);
+                Pattern pattern1 = Pattern.compile(atributo1 + ":\\s*(.*?)(?:\\s[A-Za-zÀ-ÿ]+:|\\s*\\/|$)", Pattern.CASE_INSENSITIVE);
+                Pattern pattern2 = Pattern.compile(atributo2 + ":\\s*(.*?)(?:\\s[A-Za-zÀ-ÿ]+:|\\s*\\/|$)", Pattern.CASE_INSENSITIVE);
                 Matcher matcher1 = pattern1.matcher(line);
                 Matcher matcher2 = pattern2.matcher(line);
 
@@ -264,7 +264,7 @@ public class BuscarPet {
                     String valorCampo2 = matcher2.group(1);
 
                     if (valorCampo1.toLowerCase().contains(buscaRegex1.toLowerCase()) && valorCampo2.toLowerCase().contains(buscaRegex2.toLowerCase())){
-                        Pattern todosCampos = Pattern.compile("Nome: (.*?) Tipo: (.*?) Sexo: (.*?) Endereço: (.*?) Idade: (.*?) Peso: (.*?) Raça: (.*)", Pattern.CASE_INSENSITIVE);
+                        Pattern todosCampos = Pattern.compile("Nome: (.*?) Tipo: (.*?) Sexo: (.*?) Endereço: (.*?) Idade: (.*?) Peso: (.*?) Raça: ([^/]+)", Pattern.CASE_INSENSITIVE);
                         Matcher matcher = todosCampos.matcher(line);
 
                         if (matcher.find()){
