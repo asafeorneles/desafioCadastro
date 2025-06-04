@@ -19,8 +19,8 @@ public class SalvarPet {
         for (String nome : nomes) {
             nomePetUpper += nome.toUpperCase();
         }
-        String fileName = (now.format(df) + "-" + nomePetUpper);
-        String filePathName = ("src/petsCadastrados/" + fileName + ".TXT");
+        String fileName = (now.format(df) + "-" + nomePetUpper + ".TXT");
+        String filePathName = ("src/petsCadastrados/" + fileName);
         File file = new File(filePathName);
         try (FileWriter fw = new FileWriter(file);
              BufferedWriter bw = new BufferedWriter(fw)){
