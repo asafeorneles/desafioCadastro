@@ -166,7 +166,7 @@ public class BuscarPet {
                 }
             }
 
-            if (encontrou == false){
+            if (!encontrou){
                 System.out.println("Nenhum resultado encontrado.");
             }
 
@@ -283,7 +283,7 @@ public class BuscarPet {
                     }
                 }
             }
-            if (encontrou == false){
+            if (!encontrou){
                 System.out.println("Nenhum resultado encontrado.");
             }
 
