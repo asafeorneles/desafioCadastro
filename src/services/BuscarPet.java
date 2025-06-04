@@ -168,6 +168,9 @@ public class BuscarPet {
 
             if (!encontrou){
                 System.out.println("Nenhum resultado encontrado.");
+                Menu.exibirMenu();
+            } else {
+                Menu.exibirMenu();
             }
 
         } catch (IOException e) {
@@ -285,6 +288,9 @@ public class BuscarPet {
             }
             if (!encontrou){
                 System.out.println("Nenhum resultado encontrado.");
+                Menu.exibirMenu();
+            } else {
+                Menu.exibirMenu();
             }
 
         } catch (IOException e) {

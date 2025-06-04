@@ -2,6 +2,7 @@ package src.services.Test;
 
 import src.enuns.BuscaPet;
 import src.enuns.TipoPet;
+import src.services.Menu;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -172,6 +173,9 @@ public class BuscarPetTest {
 
             if (!encontrou){
                 System.out.println("Nenhum resultado encontrado.");
+                Menu.exibirMenu();
+            } else {
+                Menu.exibirMenu();
             }
 
         } catch (IOException e) {
@@ -289,6 +293,9 @@ public class BuscarPetTest {
             }
             if (!encontrou){
                 System.out.println("Nenhum resultado encontrado.");
+                Menu.exibirMenu();
+            } else {
+                Menu.exibirMenu();
             }
 
         } catch (IOException e) {
