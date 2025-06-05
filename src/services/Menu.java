@@ -22,7 +22,7 @@ public class Menu {
             switch (opcao){
                 case 1: CadastrarPet.cadastrarPet(); break;
                 case 2: AlterarPet.buscarPetMenu(); break;
-                case 3:
+                case 3: DeletarPet.buscarPetMenu(); break;
                 case 4:
                 case 5: BuscarPet.buscarPetMenu(); break;
                 case 6: System.out.println("Saindo do programa..."); break;

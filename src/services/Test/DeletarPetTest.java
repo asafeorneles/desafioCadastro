@@ -1,15 +1,21 @@
-package src.services;
+package src.services.Test;
 
 import src.enuns.BuscaPet;
-import src.enuns.SexoPet;
 import src.enuns.TipoPet;
+import src.services.Menu;
+import src.services.SalvarPet;
+
 import java.io.*;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class DeletarPet {
-    public static void buscarPetMenu(){
+public class DeletarPetTest {
+    public static void main(String[] args) {
+        buscarPetMenu();
+    }
+
+    public static void buscarPetMenu() {
         Scanner input = new Scanner(System.in);
         System.out.println("Selecione os critérios de busca:");
         System.out.println("1 - Nome e/ou sobrenome");
@@ -22,13 +28,27 @@ public class DeletarPet {
         input.nextLine();
 
         switch (opcao) {
-            case 1: buscarPetPart2(opcao);break;
-            case 2: buscarPetPart2(opcao);break;
-            case 3: buscarPetPart2(opcao);break;
-            case 4: buscarPetPart2(opcao);break;
-            case 5: buscarPetPart2(opcao);break;
-            case 6: buscarPetPart2(opcao);break;
-            default: System.out.println("Selecione uma opçao de 1 a 6!"); break;
+            case 1:
+                buscarPetPart2(opcao);
+                break;
+            case 2:
+                buscarPetPart2(opcao);
+                break;
+            case 3:
+                buscarPetPart2(opcao);
+                break;
+            case 4:
+                buscarPetPart2(opcao);
+                break;
+            case 5:
+                buscarPetPart2(opcao);
+                break;
+            case 6:
+                buscarPetPart2(opcao);
+                break;
+            default:
+                System.out.println("Selecione uma opçao de 1 a 6!");
+                break;
         }
     }
 
@@ -40,9 +60,11 @@ public class DeletarPet {
         input.nextLine();
         switch (opcao2) {
             case 1:
-                selecionarOutroCriterio(opcao); break;
+                selecionarOutroCriterio(opcao);
+                break;
             case 2:
-                fazerBusca(opcao); break;
+                fazerBusca(opcao);
+                break;
         }
     }
 
@@ -75,13 +97,27 @@ public class DeletarPet {
         int opcao2 = input.nextInt();
         input.nextLine();
         switch (opcao2) {
-            case 1: fazerBusca2(opcao, opcao2); break;
-            case 2: fazerBusca2(opcao, opcao2); break;
-            case 3: fazerBusca2(opcao, opcao2); break;
-            case 4: fazerBusca2(opcao, opcao2); break;
-            case 5: fazerBusca2(opcao, opcao2); break;
-            case 6: fazerBusca2(opcao, opcao2); break;
-            default: System.out.println("Selecione apenas as opções disponíveis!") ;break;
+            case 1:
+                fazerBusca2(opcao, opcao2);
+                break;
+            case 2:
+                fazerBusca2(opcao, opcao2);
+                break;
+            case 3:
+                fazerBusca2(opcao, opcao2);
+                break;
+            case 4:
+                fazerBusca2(opcao, opcao2);
+                break;
+            case 5:
+                fazerBusca2(opcao, opcao2);
+                break;
+            case 6:
+                fazerBusca2(opcao, opcao2);
+                break;
+            default:
+                System.out.println("Selecione apenas as opções disponíveis!");
+                break;
         }
     }
 
@@ -149,7 +185,7 @@ public class DeletarPet {
                         Pattern todosCampos = Pattern.compile("Nome: (.*?) Tipo: (.*?) Sexo: (.*?) Endereço: (.*?) Idade: (.*?) Peso: (.*?) Raça: (.*?)\\s+/\\s+(\\d{8}T\\d{4}-.*?\\.TXT)", Pattern.CASE_INSENSITIVE);
                         Matcher matcherTodosCampos = todosCampos.matcher(line);
 
-                        if (matcherTodosCampos.find()){
+                        if (matcherTodosCampos.find()) {
                             salvarArquivoTemp(line);
                             encontrou = true;
                         }
@@ -157,7 +193,7 @@ public class DeletarPet {
                 }
             }
 
-            if (!encontrou){
+            if (!encontrou) {
                 System.out.println("Nenhum resultado encontrado.");
                 File fileTemp = new File("src/petsCadastrados/PETSENCONTRADOS.txt");
                 fileTemp.delete();
@@ -259,11 +295,11 @@ public class DeletarPet {
                     String valorCampo1 = matcher1.group(1);
                     String valorCampo2 = matcher2.group(1);
 
-                    if (valorCampo1.toLowerCase().contains(buscaRegex1.toLowerCase()) && valorCampo2.toLowerCase().contains(buscaRegex2.toLowerCase())){
+                    if (valorCampo1.toLowerCase().contains(buscaRegex1.toLowerCase()) && valorCampo2.toLowerCase().contains(buscaRegex2.toLowerCase())) {
                         Pattern todosCampos = Pattern.compile("Nome: (.*?) Tipo: (.*?) Sexo: (.*?) Endereço: (.*?) Idade: (.*?) Peso: (.*?) Raça: (.*?)\\s+/\\s+(\\d{8}T\\d{4}-.*?\\.TXT)", Pattern.CASE_INSENSITIVE);
                         Matcher matcher = todosCampos.matcher(line);
 
-                        if (matcher.find()){
+                        if (matcher.find()) {
 
                             salvarArquivoTemp(line);
                             encontrou = true;
@@ -272,11 +308,11 @@ public class DeletarPet {
                     }
                 }
             }
-            if (!encontrou){
+            if (!encontrou) {
                 System.out.println("Nenhum resultado encontrado.");
                 File fileTemp = new File("src/petsCadastrados/PETSENCONTRADOS.txt");
                 fileTemp.delete();
-            }else {
+            } else {
                 deletarPetMenu();
             }
 
@@ -296,17 +332,19 @@ public class DeletarPet {
         }
     }
 
-    public static void salvarArquivoTemp(String line){
+    public static void salvarArquivoTemp(String line) {
         File fileTemp = new File("src/petsCadastrados/PETSENCONTRADOS.txt");
         try (FileWriter fw = new FileWriter(fileTemp);
-        BufferedWriter bw = new BufferedWriter(fw)){
-            bw.write(line); bw.newLine(); bw.flush();
-        }catch (IOException e){
+             BufferedWriter bw = new BufferedWriter(fw)) {
+            bw.write(line);
+            bw.newLine();
+            bw.flush();
+        } catch (IOException e) {
             System.out.println("Falha ao escrever arquivo" + e.getMessage());
         }
     }
 
-    public static void deletarPetMenu(){
+    public static void deletarPetMenu() {
         Scanner input = new Scanner(System.in);
         String fileName = "";
         Pattern patternAtributos = Pattern.compile("Nome: (.*?) Tipo: (.*?) Sexo: (.*?) Endereço: (.*?) Idade: (.*?) Peso: (.*?) Raça: (.*?)\\s+/\\s+(\\d{8}T\\d{4}-.*?\\.TXT)");
@@ -316,13 +354,13 @@ public class DeletarPet {
         File fileTemp = new File("src/petsCadastrados/PETSENCONTRADOS.txt");
 
         try (FileReader fr = new FileReader(fileTemp);
-        BufferedReader br = new BufferedReader(fr)) {
+             BufferedReader br = new BufferedReader(fr)) {
 
             String line;
-            while ((line = br.readLine()) != null){
+            while ((line = br.readLine()) != null) {
                 Matcher matcher = patternAtributos.matcher(line);
 
-                if (matcher.find()){
+                if (matcher.find()) {
                     String nomeP = matcher.group(1);
                     String tipoP = matcher.group(2);
                     String sexoP = matcher.group(3);
@@ -332,7 +370,7 @@ public class DeletarPet {
                     String racaP = matcher.group(7);
 
                     System.out.println(cont + ". " + nomeP + " - " + tipoP + " - " + sexoP + " - " + enderecoP + " - " + idadeP + " - " + pesoP + " - " + racaP);
-                    cont ++;
+                    cont++;
                 }
             }
 
@@ -341,7 +379,7 @@ public class DeletarPet {
             int numeroPetEscolhidoInt;
             try {
                 numeroPetEscolhidoInt = Integer.parseInt(numeroPetEscolhido);
-                if (numeroPetEscolhidoInt <=0 || numeroPetEscolhidoInt >= cont){
+                if (numeroPetEscolhidoInt <= 0 || numeroPetEscolhidoInt >= cont) {
                     System.out.println("Número inválido. Selecione um número da lista.");
                     return;
                 }
@@ -352,13 +390,13 @@ public class DeletarPet {
 
             int cont2 = 0;
             try (FileReader fr2 = new FileReader(fileTemp);
-            BufferedReader br2 = new BufferedReader(fr2)){
+                 BufferedReader br2 = new BufferedReader(fr2)) {
 
-                while ((line = br2.readLine()) != null){
+                while ((line = br2.readLine()) != null) {
                     Matcher matcher = patternAtributos.matcher(line);
-                    if (matcher.find()){
+                    if (matcher.find()) {
                         cont2++;
-                        if (numeroPetEscolhidoInt == cont2){
+                        if (numeroPetEscolhidoInt == cont2) {
                             fileName = matcher.group(8);
 
                             petEncontrado = true;
@@ -366,25 +404,25 @@ public class DeletarPet {
                     }
                 }
             }
-            if (petEncontrado){
+            if (petEncontrado) {
                 deletarPet(fileName);
-            }else {
+            } else {
                 System.out.println("Nenhum pet com esse número foi encontrado.");
             }
         } catch (IOException e) {
             System.out.println("Falha ao ler arquivo" + e.getMessage());
-        }finally {
+        } finally {
             fileTemp.delete();
         }
     }
 
-    public static void deletarPet(String fileName){
+    public static void deletarPet(String fileName) {
         Scanner input = new Scanner(System.in);
         String confirmacao;
         do {
             System.out.println("Confirma a exclusão do pet? Digite sim ou não. (Essa ação não pode ser desfeita)");
             confirmacao = input.nextLine();
-            if (confirmacao.equalsIgnoreCase("sim")){
+            if (confirmacao.equalsIgnoreCase("sim")) {
                 SalvarPet.deletarPet(fileName);
             } else if (confirmacao.equalsIgnoreCase("não") || confirmacao.equalsIgnoreCase("nao")) {
                 System.out.println("Nenhuma exclusão feita.");
@@ -392,6 +430,6 @@ public class DeletarPet {
             } else {
                 System.out.println("Digite apenas \"sim\" ou \"Não\".");
             }
-        }while (!confirmacao.equalsIgnoreCase("sim") && !confirmacao.equalsIgnoreCase("não") && !confirmacao.equalsIgnoreCase("nao"));
+        } while (!confirmacao.equalsIgnoreCase("sim") && !confirmacao.equalsIgnoreCase("não") && !confirmacao.equalsIgnoreCase("nao"));
     }
 }
