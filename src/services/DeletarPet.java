@@ -3,15 +3,13 @@ package src.services;
 import src.enuns.BuscaPet;
 import src.enuns.SexoPet;
 import src.enuns.TipoPet;
-import src.model.Pet;
-import src.services.Test.SalvarPetTest;
 
 import java.io.*;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class AlterarPet {
+public class DeletarPet {
     public static void buscarPetMenu() {
         Scanner input = new Scanner(System.in);
         System.out.println("Selecione os critérios de busca:");
@@ -25,13 +23,27 @@ public class AlterarPet {
         input.nextLine();
 
         switch (opcao) {
-            case 1: buscarPetPart2(opcao);break;
-            case 2: buscarPetPart2(opcao);break;
-            case 3: buscarPetPart2(opcao);break;
-            case 4: buscarPetPart2(opcao);break;
-            case 5: buscarPetPart2(opcao);break;
-            case 6: buscarPetPart2(opcao);break;
-            default: System.out.println("Selecione uma opçao de 1 a 6!"); break;
+            case 1:
+                buscarPetPart2(opcao);
+                break;
+            case 2:
+                buscarPetPart2(opcao);
+                break;
+            case 3:
+                buscarPetPart2(opcao);
+                break;
+            case 4:
+                buscarPetPart2(opcao);
+                break;
+            case 5:
+                buscarPetPart2(opcao);
+                break;
+            case 6:
+                buscarPetPart2(opcao);
+                break;
+            default:
+                System.out.println("Selecione uma opçao de 1 a 6!");
+                break;
         }
     }
 
@@ -43,9 +55,11 @@ public class AlterarPet {
         input.nextLine();
         switch (opcao2) {
             case 1:
-                selecionarOutroCriterio(opcao); break;
+                selecionarOutroCriterio(opcao);
+                break;
             case 2:
-                fazerBusca(opcao); break;
+                fazerBusca(opcao);
+                break;
         }
     }
 
@@ -78,13 +92,27 @@ public class AlterarPet {
         int opcao2 = input.nextInt();
         input.nextLine();
         switch (opcao2) {
-            case 1: fazerBusca2(opcao, opcao2); break;
-            case 2: fazerBusca2(opcao, opcao2); break;
-            case 3: fazerBusca2(opcao, opcao2); break;
-            case 4: fazerBusca2(opcao, opcao2); break;
-            case 5: fazerBusca2(opcao, opcao2); break;
-            case 6: fazerBusca2(opcao, opcao2); break;
-            default: System.out.println("Selecione apenas as opções disponíveis!") ;break;
+            case 1:
+                fazerBusca2(opcao, opcao2);
+                break;
+            case 2:
+                fazerBusca2(opcao, opcao2);
+                break;
+            case 3:
+                fazerBusca2(opcao, opcao2);
+                break;
+            case 4:
+                fazerBusca2(opcao, opcao2);
+                break;
+            case 5:
+                fazerBusca2(opcao, opcao2);
+                break;
+            case 6:
+                fazerBusca2(opcao, opcao2);
+                break;
+            default:
+                System.out.println("Selecione apenas as opções disponíveis!");
+                break;
         }
     }
 
@@ -152,7 +180,7 @@ public class AlterarPet {
                         Pattern todosCampos = Pattern.compile("Nome: (.*?) Tipo: (.*?) Sexo: (.*?) Endereço: (.*?) Idade: (.*?) Peso: (.*?) Raça: (.*?)\\s+/\\s+(\\d{8}T\\d{4}-.*?\\.TXT)", Pattern.CASE_INSENSITIVE);
                         Matcher matcherTodosCampos = todosCampos.matcher(line);
 
-                        if (matcherTodosCampos.find()){
+                        if (matcherTodosCampos.find()) {
                             salvarArquivoTemp(line);
                             encontrou = true;
                         }
@@ -160,12 +188,12 @@ public class AlterarPet {
                 }
             }
 
-            if (!encontrou){
+            if (!encontrou) {
                 System.out.println("Nenhum resultado encontrado.");
                 File fileTemp = new File("src/petsCadastrados/PETSENCONTRADOS.txt");
                 fileTemp.delete();
             } else {
-                alterarPetMenu();
+                deletarPetMenu();
             }
 
         } catch (IOException e) {
@@ -262,11 +290,12 @@ public class AlterarPet {
                     String valorCampo1 = matcher1.group(1);
                     String valorCampo2 = matcher2.group(1);
 
-                    if (valorCampo1.toLowerCase().contains(buscaRegex1.toLowerCase()) && valorCampo2.toLowerCase().contains(buscaRegex2.toLowerCase())){
+                    if (valorCampo1.toLowerCase().contains(buscaRegex1.toLowerCase()) && valorCampo2.toLowerCase().contains(buscaRegex2.toLowerCase())) {
                         Pattern todosCampos = Pattern.compile("Nome: (.*?) Tipo: (.*?) Sexo: (.*?) Endereço: (.*?) Idade: (.*?) Peso: (.*?) Raça: (.*?)\\s+/\\s+(\\d{8}T\\d{4}-.*?\\.TXT)", Pattern.CASE_INSENSITIVE);
                         Matcher matcher = todosCampos.matcher(line);
 
-                        if (matcher.find()){
+                        if (matcher.find()) {
+
                             salvarArquivoTemp(line);
                             encontrou = true;
 
@@ -274,19 +303,19 @@ public class AlterarPet {
                     }
                 }
             }
-            if (!encontrou){
+            if (!encontrou) {
                 System.out.println("Nenhum resultado encontrado.");
                 File fileTemp = new File("src/petsCadastrados/PETSENCONTRADOS.txt");
                 fileTemp.delete();
-            }else {
-                alterarPetMenu();
+            } else {
+                deletarPetMenu();
             }
 
         } catch (IOException e) {
             System.out.println("Não foi possível ler o arquivo" + e.getMessage());
         }
 
-        }
+    }
 
     public static void clearTempFile(String filePath) {
         File file = new File(filePath);
@@ -298,20 +327,21 @@ public class AlterarPet {
         }
     }
 
-    public static void salvarArquivoTemp(String resultado){
+    public static void salvarArquivoTemp(String line) {
         File fileTemp = new File("src/petsCadastrados/PETSENCONTRADOS.txt");
-        try (FileWriter fw = new FileWriter(fileTemp, true);
-        BufferedWriter bw = new BufferedWriter(fw)) {
-            bw.write(resultado); bw.newLine(); bw.flush();
-        } catch (IOException e){
+        try (FileWriter fw = new FileWriter(fileTemp);
+             BufferedWriter bw = new BufferedWriter(fw)) {
+            bw.write(line);
+            bw.newLine();
+            bw.flush();
+        } catch (IOException e) {
             System.out.println("Falha ao escrever arquivo" + e.getMessage());
         }
     }
 
-    public static void alterarPetMenu(){
+    public static void deletarPetMenu() {
         Scanner input = new Scanner(System.in);
-        String fileName = null;
-        Pet pet = null;
+        String fileName = "";
         Pattern patternAtributos = Pattern.compile("Nome: (.*?) Tipo: (.*?) Sexo: (.*?) Endereço: (.*?) Idade: (.*?) Peso: (.*?) Raça: (.*?)\\s+/\\s+(\\d{8}T\\d{4}-.*?\\.TXT)");
         boolean petEncontrado = false;
         int cont = 1;
@@ -322,27 +352,24 @@ public class AlterarPet {
              BufferedReader br = new BufferedReader(fr)) {
 
             String line;
-            while ((line = br.readLine()) != null){
-
+            while ((line = br.readLine()) != null) {
                 Matcher matcher = patternAtributos.matcher(line);
 
-                if (matcher.find()){
-                    String nomeP= matcher.group(1);
-                    String tipoP= matcher.group(2);
-                    String sexoP= matcher.group(3);
+                if (matcher.find()) {
+                    String nomeP = matcher.group(1);
+                    String tipoP = matcher.group(2);
+                    String sexoP = matcher.group(3);
                     String enderecoP = matcher.group(4);
-                    String idadeP=  matcher.group(5);
+                    String idadeP = matcher.group(5);
                     String pesoP = matcher.group(6);
                     String racaP = matcher.group(7);
 
-                    String resultado = (cont + ". " + nomeP + " - " + tipoP + " - " + sexoP + " - " + enderecoP + " - " + idadeP + " - " + pesoP + " - " + racaP);
-                    System.out.println(resultado);
+                    System.out.println(cont + ". " + nomeP + " - " + tipoP + " - " + sexoP + " - " + enderecoP + " - " + idadeP + " - " + pesoP + " - " + racaP);
                     cont++;
                 }
-
             }
 
-            System.out.println("Qual dos pets deseja alterar?");
+            System.out.println("Digite o numero do pet que deseja deletar:");
             String numeroPetEscolhido = input.nextLine();
             int numeroPetEscolhidoInt;
             try {
@@ -351,7 +378,7 @@ public class AlterarPet {
                     System.out.println("Número inválido. Selecione um número da lista.");
                     return;
                 }
-            } catch (NumberFormatException e) {
+            } catch (RuntimeException e) {
                 System.out.println("Entrada inválida. Digite um número válido.");
                 return;
             }
@@ -362,201 +389,42 @@ public class AlterarPet {
 
                 while ((line = br2.readLine()) != null) {
                     Matcher matcher = patternAtributos.matcher(line);
-
                     if (matcher.find()) {
-                        cont2 ++;
-                        if (numeroPetEscolhidoInt == cont2){
+                        cont2++;
+                        if (numeroPetEscolhidoInt == cont2) {
                             fileName = matcher.group(8);
-                            String nomeP = matcher.group(1);
-                            String tipoP = matcher.group(2);
-                            String sexoP = matcher.group(3);
-                            String enderecoP = matcher.group(4);
-                            String idadeP = matcher.group(5);
-                            String pesoP = matcher.group(6);
-                            String racaP = matcher.group(7);
 
-                            pet = new Pet(nomeP, verificarTipoPet(tipoP), verificarSexoPet(sexoP), enderecoP, idadeP, pesoP, racaP);
                             petEncontrado = true;
-                            break;
                         }
                     }
                 }
             }
-
-            if (petEncontrado){
-                atributosAlteracao(pet, fileName);
-            }else {
+            if (petEncontrado) {
+                deletarPet(fileName);
+            } else {
                 System.out.println("Nenhum pet com esse número foi encontrado.");
             }
-
-        } catch (IOException e){
+        } catch (IOException e) {
             System.out.println("Falha ao ler arquivo" + e.getMessage());
-        }finally {
+        } finally {
             fileTemp.delete();
         }
-
     }
 
-    public static void atributosAlteracao(Pet pet, String fileName){
+    public static void deletarPet(String fileName) {
         Scanner input = new Scanner(System.in);
-        int opcao;
+        String confirmacao;
         do {
-            System.out.println("Escolha o atributo que deseja alterar:");
-            System.out.println("1 - Nome e/ou sobrenome");
-            System.out.println("2 - Idade");
-            System.out.println("3 - Peso");
-            System.out.println("4 - Raça");
-            System.out.println("5 - Endereço");
-
-            opcao = input.nextInt();
-            input.nextLine();
-
-            if (opcao <1 || opcao >5){
-                System.out.println("Selecione uma opçao de 1 a 5!");
+            System.out.println("Confirma a exclusão do pet? Digite sim ou não. (Essa ação não pode ser desfeita)");
+            confirmacao = input.nextLine();
+            if (confirmacao.equalsIgnoreCase("sim")) {
+                SalvarPet.deletarPet(fileName);
+            } else if (confirmacao.equalsIgnoreCase("não") || confirmacao.equalsIgnoreCase("nao")) {
+                System.out.println("Nenhuma exclusão feita.");
+                Menu.exibirMenu();
+            } else {
+                System.out.println("Digite apenas \"sim\" ou \"Não\".");
             }
-
-        } while (opcao <1 || opcao >5);
-
-        fazerAlteracao(opcao, pet, fileName);
+        } while (!confirmacao.equalsIgnoreCase("sim") && !confirmacao.equalsIgnoreCase("não") && !confirmacao.equalsIgnoreCase("nao"));
     }
-
-    public static void fazerAlteracao(int opcao, Pet pet, String fileName){
-        Scanner input = new Scanner(System.in);
-        try{
-            switch (opcao){
-                case 1:
-                    System.out.println("Digite o novo nome:");
-                    String nomeCompleto = input.nextLine();
-                    if (nomeCompleto == null || nomeCompleto.trim().isEmpty()) {
-                        nomeCompleto = Pet.NULL;
-                    } else if (!nomeCompleto.matches("^[a-zA-ZÀ-ÿ]+(?:\\s[a-zA-ZÀ-ÿ]+)*$")){
-                        throw new IllegalArgumentException("O nome pode conter apenas Letras.");
-                    } else if (nomeCompleto.trim().split("\\s+").length < 2) {
-                        throw new IllegalArgumentException("Informe o nome e o sobrenome.");
-                    }
-                    pet.setNomeCompleto(nomeCompleto);
-                    break;
-                case 2:
-                    System.out.println("Digite a nova idade:");
-                    String idade = input.nextLine();
-                    if (idade == null || idade.trim().isEmpty()) {
-                        idade = Pet.NULL;
-                    } else if (idade.matches("0")) {
-                        throw new IllegalArgumentException("A idade não pode ser 0!");
-                    } else if (idade.matches("^0+([,.]\\d+)?$")) {
-                        idade = idade.replace(',', '.');
-                        idade = idade + " anos";
-                    } else if (idade.matches("\\d+")) {
-                        int idadeInt = Integer.parseInt(idade);
-                        if (idadeInt < 0 || idadeInt > 20) {
-                            throw new RuntimeException("Insira uma idade entre 1 a 20 anos.");
-                        } else if (idadeInt == 1) {
-                            idade = idade + " ano";
-                        } else {
-                            idade = idade + " anos";
-                        }
-                    } else {
-                        throw new RuntimeException("Insira apenas números inteiros.");
-                    }
-                    pet.setIdade(idade);
-                    break;
-                case 3:
-                    System.out.println("Digite o novo peso:");
-                    String peso = input.nextLine();
-                    if (peso == null || peso.trim().isEmpty()) {
-                        peso = Pet.NULL;
-                    } else if (peso.matches("^\\d+([,.]\\d)?$")) {
-                        peso = peso.replace(',', '.');
-
-                        double pesoDouble = Double.parseDouble(peso);
-                        if (pesoDouble < 0.5 || pesoDouble > 60) {
-                            throw new RuntimeException("Peso inválido! Insira um peso entre 0.5kg e 60kg.");
-                        }
-                        else {
-                            peso = peso + "kg";
-                        }
-
-                    } else {
-                        throw new RuntimeException("Insira apenas números.");
-                    }
-                    pet.setPeso(peso);
-                    break;
-                case 4:
-                    System.out.println("Digite a nova raça:");
-                    String raca = input.nextLine();
-                    if (raca == null || raca.trim().isEmpty()) {
-                        raca = Pet.NULL;
-                    } else if (!raca.matches("^[a-zA-ZÀ-ÿ]+(?:[\\s-][a-zA-ZÀ-ÿ]+)*$")) {
-                        throw new IllegalArgumentException("Utilize apenas letras e espaços em branco entre as palavras");
-                    }
-                    pet.setRaca(raca);
-                    break;
-                case 5:System.out.println("Digite o novo endereço:");
-
-                    String rua;
-                    String numero;
-                    String bairro;
-                    String cidade;
-                    do {
-                        System.out.println("Informe a rua:");
-                        rua = input.nextLine();
-                        if ((rua == null || rua.trim().isEmpty())){
-                            System.out.println("A rua não pode ficar vazia!");
-                        }
-                    }while ((rua == null || rua.trim().isEmpty()));
-
-                    System.out.println("Número:");
-                    numero = input.nextLine();
-                    if (numero == null || numero.trim().isEmpty()){
-                        numero = Pet.NULL;
-                    }
-                    else if (!numero.matches("\\d+")) {
-                        throw new IllegalArgumentException("Insira apenas números!");
-                    }
-                    do {
-                        System.out.println("Bairro:");
-                        bairro = input.nextLine();
-                        if ((bairro == null || bairro.trim().isEmpty())){
-                            System.out.println("O bairro não pode ficar vazio!");
-                        }
-                    }while ((bairro == null || bairro.trim().isEmpty()));
-                    do {
-                        System.out.println("Cidade");
-                        cidade = input.nextLine();
-                        if ((cidade == null || cidade.trim().isEmpty())){
-                            System.out.println("A cidade não pode ficar vazia!");
-                        }
-                    } while ((cidade == null || cidade.trim().isEmpty()));
-
-                    String endereco = rua.concat(", " + numero + ", " + bairro + " - " + cidade);
-                    pet.setEndereco(endereco);
-                    break;
-            }
-            SalvarPet.rewriterPet(pet, fileName);
-        } catch (RuntimeException e){
-            System.out.println("Erro ao fazer alteração do pet." + e.getMessage());
-        }
-
-    }
-
-    public static TipoPet verificarTipoPet(String tipo){
-        if (tipo.equalsIgnoreCase("Cachorro")){
-            return TipoPet.CACHORRO;
-        } else if (tipo.equalsIgnoreCase("Gato")){
-            return TipoPet.GATO;
-        } else {
-            throw new IllegalArgumentException("Não foi possível identificar o tipo do pet");
-        }
-    }
-
-    public static SexoPet verificarSexoPet(String tipo){
-        if (tipo.equalsIgnoreCase("macho")){
-            return SexoPet.MASCULINO;
-        } else if (tipo.equalsIgnoreCase("fêmea")){
-            return SexoPet.FEMININO;
-        } else {
-            throw new IllegalArgumentException("Não foi possível identificar o sexo do pet");
-        }
-    }
-
 }
