@@ -18,76 +18,86 @@ public class BuscarPetTest {
     }
 
     public static void buscarPetMenu() {
-        Scanner input = new Scanner(System.in);
-        System.out.println("Selecione os critérios de busca:");
-        System.out.println("1 - Nome e/ou sobrenome");
-        System.out.println("2 - Sexo");
-        System.out.println("3 - Idade");
-        System.out.println("4 - Peso");
-        System.out.println("5 - Raça");
-        System.out.println("6 - Endereço");
-        int opcao = input.nextInt();
+        int opcao;
+        do {
+            Scanner input = new Scanner(System.in);
+            System.out.println("Selecione os critérios de busca:");
+            System.out.println("1 - Nome e/ou sobrenome");
+            System.out.println("2 - Sexo");
+            System.out.println("3 - Idade");
+            System.out.println("4 - Peso");
+            System.out.println("5 - Raça");
+            System.out.println("6 - Endereço");
+            opcao = input.nextInt();
+            input.nextLine();
 
-        switch (opcao) {
-            case 1: buscarPetPart2(opcao);break;
-            case 2: buscarPetPart2(opcao);break;
-            case 3: buscarPetPart2(opcao);break;
-            case 4: buscarPetPart2(opcao);break;
-            case 5: buscarPetPart2(opcao);break;
-            case 6: buscarPetPart2(opcao);break;
-            default: System.out.println("Selecione uma opçao de 1 a 6!"); break;
-        }
+            switch (opcao) {
+                case 1: buscarPetPart2(opcao);break;
+                case 2: buscarPetPart2(opcao);break;
+                case 3: buscarPetPart2(opcao);break;
+                case 4: buscarPetPart2(opcao);break;
+                case 5: buscarPetPart2(opcao);break;
+                case 6: buscarPetPart2(opcao);break;
+                default: System.out.println("Selecione apenas as opções disponíveis!"); break;
+            }
+        } while (opcao <1 || opcao >6);
     }
 
     public static void buscarPetPart2(int opcao) {
         Scanner input = new Scanner(System.in);
-        System.out.println("1- Selecionar outro critério de busca");
-        System.out.println("2- Buscar");
-        int opcao2 = input.nextInt();
-        switch (opcao2) {
-            case 1:
-                selecionarOutroCriterio(opcao); break;
-            case 2:
-                fazerBusca(opcao); break;
-        }
+        int opcaoBusca2;
+        do {
+            System.out.println("1- Selecionar outro critério de busca");
+            System.out.println("2- Buscar");
+            opcaoBusca2 = input.nextInt();
+            switch (opcaoBusca2) {
+                case 1: selecionarOutroCriterio(opcao); break;
+                case 2: fazerBusca(opcao); break;
+                default: System.out.println("Selecione apenas as opções disponíveis!"); break;
+            }
+        }while (opcaoBusca2 <1 || opcaoBusca2 > 2);
     }
 
     public static void selecionarOutroCriterio(int opcao) {
         Scanner input = new Scanner(System.in);
         BuscaPet buscaPet = null;
-        for (int i = 1; i < 7; i++) {
-            if (i == opcao) {
-                continue;
-            } else if (i == 1) {
-                buscaPet = BuscaPet.NOME_E_SOBRENOME;
-                System.out.println(buscaPet.getVALOR() + " - " + buscaPet.getINFO());
-            } else if (i == 2) {
-                buscaPet = BuscaPet.SEXO;
-                System.out.println(buscaPet.getVALOR() + " - " + buscaPet.getINFO());
-            } else if (i == 3) {
-                buscaPet = BuscaPet.IDADE;
-                System.out.println(buscaPet.getVALOR() + " - " + buscaPet.getINFO());
-            } else if (i == 4) {
-                buscaPet = BuscaPet.PESO;
-                System.out.println(buscaPet.getVALOR() + " - " + buscaPet.getINFO());
-            } else if (i == 5) {
-                buscaPet = BuscaPet.RACA;
-                System.out.println(buscaPet.getVALOR() + " - " + buscaPet.getINFO());
-            } else if (i == 6) {
-                buscaPet = BuscaPet.ENDERECO;
-                System.out.println(buscaPet.getVALOR() + " - " + buscaPet.getINFO());
+        int opcao2;
+        do {
+            for (int i = 1; i < 7; i++) {
+                if (i == opcao) {
+                    continue;
+                } else if (i == 1) {
+                    buscaPet = BuscaPet.NOME_E_SOBRENOME;
+                    System.out.println(buscaPet.getVALOR() + " - " + buscaPet.getINFO());
+                } else if (i == 2) {
+                    buscaPet = BuscaPet.SEXO;
+                    System.out.println(buscaPet.getVALOR() + " - " + buscaPet.getINFO());
+                } else if (i == 3) {
+                    buscaPet = BuscaPet.IDADE;
+                    System.out.println(buscaPet.getVALOR() + " - " + buscaPet.getINFO());
+                } else if (i == 4) {
+                    buscaPet = BuscaPet.PESO;
+                    System.out.println(buscaPet.getVALOR() + " - " + buscaPet.getINFO());
+                } else if (i == 5) {
+                    buscaPet = BuscaPet.RACA;
+                    System.out.println(buscaPet.getVALOR() + " - " + buscaPet.getINFO());
+                } else if (i == 6) {
+                    buscaPet = BuscaPet.ENDERECO;
+                    System.out.println(buscaPet.getVALOR() + " - " + buscaPet.getINFO());
+                }
             }
-        }
-        int opcao2 = input.nextInt();
-        switch (opcao2) {
-            case 1: fazerBusca2(opcao, opcao2); break;
-            case 2: fazerBusca2(opcao, opcao2); break;
-            case 3: fazerBusca2(opcao, opcao2); break;
-            case 4: fazerBusca2(opcao, opcao2); break;
-            case 5: fazerBusca2(opcao, opcao2); break;
-            case 6: fazerBusca2(opcao, opcao2); break;
-            default: System.out.println("Selecione apenas as opções disponíveis!") ;break;
-        }
+            opcao2 = input.nextInt();
+            switch (opcao2) {
+                case 1: fazerBusca2(opcao, opcao2); break;
+                case 2: fazerBusca2(opcao, opcao2); break;
+                case 3: fazerBusca2(opcao, opcao2); break;
+                case 4: fazerBusca2(opcao, opcao2); break;
+                case 5: fazerBusca2(opcao, opcao2); break;
+                case 6: fazerBusca2(opcao, opcao2); break;
+                default: System.out.println("Selecione apenas as opções disponíveis!") ;break;
+            }
+        }while (opcao2 < 1 || opcao2 > 6);
+
     }
 
     public static void fazerBusca(int opcao) {
@@ -96,24 +106,12 @@ public class BuscarPetTest {
         String atributo = "";
 
         switch (opcao) {
-            case 1:
-                atributo = "Nome";
-                break;
-            case 2:
-                atributo = "Sexo";
-                break;
-            case 3:
-                atributo = "Idade";
-                break;
-            case 4:
-                atributo = "Peso";
-                break;
-            case 5:
-                atributo = "Raça";
-                break;
-            case 6:
-                atributo = "Endereço";
-                break;
+            case 1: atributo = "Nome"; break;
+            case 2: atributo = "Sexo"; break;
+            case 3: atributo = "Idade"; break;
+            case 4: atributo = "Peso"; break;
+            case 5: atributo = "Raça"; break;
+            case 6: atributo = "Endereço"; break;
         }
 
         do {
@@ -190,45 +188,21 @@ public class BuscarPetTest {
         String atributo2 = "";
 
         switch (opcao) {
-            case 1:
-                atributo1 = "Nome";
-                break;
-            case 2:
-                atributo1 = "Sexo";
-                break;
-            case 3:
-                atributo1 = "Idade";
-                break;
-            case 4:
-                atributo1 = "Peso";
-                break;
-            case 5:
-                atributo1 = "Raça";
-                break;
-            case 6:
-                atributo1 = "Endereço";
-                break;
+            case 1: atributo1 = "Nome"; break;
+            case 2: atributo1 = "Sexo"; break;
+            case 3: atributo1 = "Idade"; break;
+            case 4: atributo1 = "Peso"; break;
+            case 5: atributo1 = "Raça"; break;
+            case 6: atributo1 = "Endereço"; break;
         }
 
         switch (opcao2) {
-            case 1:
-                atributo2 = "Nome";
-                break;
-            case 2:
-                atributo2 = "Sexo";
-                break;
-            case 3:
-                atributo2 = "Idade";
-                break;
-            case 4:
-                atributo2 = "Peso";
-                break;
-            case 5:
-                atributo2 = "Raça";
-                break;
-            case 6:
-                atributo2 = "Endereço";
-                break;
+            case 1: atributo2 = "Nome"; break;
+            case 2: atributo2 = "Sexo"; break;
+            case 3: atributo2 = "Idade"; break;
+            case 4: atributo2 = "Peso"; break;
+            case 5: atributo2 = "Raça"; break;
+            case 6: atributo2 = "Endereço"; break;
         }
 
         do {
