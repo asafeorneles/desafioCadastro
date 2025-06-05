@@ -23,7 +23,7 @@ public class Menu {
                 case 1: CadastrarPet.cadastrarPet(); break;
                 case 2: AlterarPet.buscarPetMenu(); break;
                 case 3: DeletarPet.buscarPetMenu(); break;
-                case 4:
+                case 4: ListarPets.listarTodosPets(); break;
                 case 5: BuscarPet.buscarPetMenu(); break;
                 case 6: System.out.println("Saindo do programa..."); break;
                 default: System.out.println("Escolha uma opção de 1 a 6!"); break;
