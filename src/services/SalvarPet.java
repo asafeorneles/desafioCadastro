@@ -7,11 +7,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class SalvarPet {
-    public static void writerPet(Pet pet){
+    public static void writerPet(Pet pet) {
         DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmm");
         LocalDateTime now = LocalDateTime.now();
 
-        String [] nomes = pet.getNomeCompleto().split("\\s");
+        String[] nomes = pet.getNomeCompleto().split("\\s");
         String nomePetUpper = "";
         for (String nome : nomes) {
             nomePetUpper += nome.toUpperCase();
@@ -21,49 +21,64 @@ public class SalvarPet {
 
         File file = new File(filePathName);
         try (FileWriter fw = new FileWriter(file);
-             BufferedWriter bw = new BufferedWriter(fw)){
+             BufferedWriter bw = new BufferedWriter(fw)) {
 
-            bw.write("1 - " + pet.getNomeCompleto()); bw.newLine();
-            bw.write("2 - " +pet.getTipo().getTIPO()); bw.newLine();
-            bw.write("3 - " +pet.getSexo().getSEXO()); bw.newLine();
-            bw.write("4 - " +pet.getEndereco()); bw.newLine();
-            bw.write("5 - " +pet.getIdade()); bw.newLine();
-            bw.write("6 - " +pet.getPeso()); bw.newLine();
-            bw.write("7 - " +pet.getRaca()); bw.flush();
+            bw.write("1 - " + pet.getNomeCompleto());
+            bw.newLine();
+            bw.write("2 - " + pet.getTipo().getTIPO());
+            bw.newLine();
+            bw.write("3 - " + pet.getSexo().getSEXO());
+            bw.newLine();
+            bw.write("4 - " + pet.getEndereco());
+            bw.newLine();
+            bw.write("5 - " + pet.getIdade());
+            bw.newLine();
+            bw.write("6 - " + pet.getPeso());
+            bw.newLine();
+            bw.write("7 - " + pet.getRaca());
+            bw.flush();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        File filePets = new File( "src/petsCadastrados/PETSGERAL.txt");
+        File filePets = new File("src/petsCadastrados/PETSGERAL.txt");
         try (FileWriter fw = new FileWriter(filePets, true);
              BufferedWriter bw = new BufferedWriter(fw)) {
             bw.write("Nome: " + pet.getNomeCompleto() + " ");
-            bw.write("Tipo: " +pet.getTipo().getTIPO() + " ");
-            bw.write("Sexo: " +pet.getSexo().getSEXO() + " ");
-            bw.write("Endereço: " +pet.getEndereco() + " ");
-            bw.write("Idade: " +pet.getIdade() + " ");
-            bw.write("Peso: " +pet.getPeso() + " ");
-            bw.write("Raça: " +pet.getRaca());
+            bw.write("Tipo: " + pet.getTipo().getTIPO() + " ");
+            bw.write("Sexo: " + pet.getSexo().getSEXO() + " ");
+            bw.write("Endereço: " + pet.getEndereco() + " ");
+            bw.write("Idade: " + pet.getIdade() + " ");
+            bw.write("Peso: " + pet.getPeso() + " ");
+            bw.write("Raça: " + pet.getRaca());
             bw.write(" / " + fileName);
-            bw.newLine(); bw.flush();
-        }catch (IOException e){
+            bw.newLine();
+            bw.flush();
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static void rewriterPet(Pet pet, String fileName){
+    public static void rewriterPet(Pet pet, String fileName) {
         File file = new File("src/petsCadastrados/" + fileName);
         try (FileWriter fw = new FileWriter(file);
-             BufferedWriter bw = new BufferedWriter(fw)){
+             BufferedWriter bw = new BufferedWriter(fw)) {
 
-            bw.write("1 - " + pet.getNomeCompleto()); bw.newLine();
-            bw.write("2 - " +pet.getTipo().getTIPO()); bw.newLine();
-            bw.write("3 - " +pet.getSexo().getSEXO()); bw.newLine();
-            bw.write("4 - " +pet.getEndereco()); bw.newLine();
-            bw.write("5 - " +pet.getIdade()); bw.newLine();
-            bw.write("6 - " +pet.getPeso()); bw.newLine();
-            bw.write("7 - " +pet.getRaca()); bw.flush();
+            bw.write("1 - " + pet.getNomeCompleto());
+            bw.newLine();
+            bw.write("2 - " + pet.getTipo().getTIPO());
+            bw.newLine();
+            bw.write("3 - " + pet.getSexo().getSEXO());
+            bw.newLine();
+            bw.write("4 - " + pet.getEndereco());
+            bw.newLine();
+            bw.write("5 - " + pet.getIdade());
+            bw.newLine();
+            bw.write("6 - " + pet.getPeso());
+            bw.newLine();
+            bw.write("7 - " + pet.getRaca());
+            bw.flush();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -97,17 +112,50 @@ public class SalvarPet {
             bw.write("Raça: " + pet.getRaca());
             bw.write(" / " + fileName);
             bw.newLine();
-        }catch (IOException e){
-            System.out.println("Erro ao atualizar pet" + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Erro ao atualizar pet " + e.getMessage());
         }
         renomearArquivoPet(pet, file);
     }
 
-    public static void renomearArquivoPet(Pet pet, File fileAntigo){
+    public static void deletarPet(String fileName) {
+        File filePath = new File("src/petsCadastrados/" + fileName);
+        try {
+            if (filePath.exists()) {
+                boolean isDeleted = filePath.delete();
+            }
+        } catch (RuntimeException e) {
+            System.out.println("Erro ao deletar pet " + e.getMessage());
+        }
+
+        File filePets = new File("src/petsCadastrados/PETSGERAL.txt");
+        String petsAnteriores = "";
+
+        try (FileReader fr = new FileReader(filePets);
+             BufferedReader br = new BufferedReader(fr)) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                if (!line.contains(fileName)) {
+                    petsAnteriores += line + "\n";
+                }
+            }
+
+            try (FileWriter fw = new FileWriter(filePets);
+                 BufferedWriter bw = new BufferedWriter(fw)) {
+                bw.write(petsAnteriores);
+            }
+        } catch (IOException e) {
+            System.out.println("Erro ao atualizar lista de pets. " + e.getMessage());
+        }
+
+        Menu.exibirMenu();
+    }
+
+    public static void renomearArquivoPet(Pet pet, File fileAntigo) {
         DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmm");
         LocalDateTime now = LocalDateTime.now();
 
-        String [] nomes = pet.getNomeCompleto().split("\\s");
+        String[] nomes = pet.getNomeCompleto().split("\\s");
         String nomePetUpper = "";
         for (String nome : nomes) {
             nomePetUpper += nome.toUpperCase();
@@ -117,9 +165,9 @@ public class SalvarPet {
 
         File fileRenomed = new File(filePathName);
         boolean isFileRenomed = fileAntigo.renameTo(fileRenomed);
-        if (isFileRenomed){
+        if (isFileRenomed) {
             System.out.println("Pet atualizado com sucesso!!");
-        }else {
+        } else {
             System.out.println("Erro ao atualizar arquivo do pet");
         }
 

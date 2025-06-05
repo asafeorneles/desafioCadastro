@@ -108,9 +108,42 @@ public class SalvarPetTest {
             bw.write(" / " + fileName);
             bw.newLine();
         }catch (IOException e){
-            System.out.println("Erro ao atualizar pet" + e.getMessage());
+            System.out.println("Erro ao atualizar pet " + e.getMessage());
         }
         renomearArquivoPet(pet, file);
+    }
+
+    public static void deletarPet(String fileName){
+        File filePath = new File("src/petsCadastrados/" + fileName);
+        try {
+            if (filePath.exists()){
+                boolean isDeleted = filePath.delete();
+            }
+        }catch (RuntimeException e){
+            System.out.println("Erro ao deletar pet " + e.getMessage());
+        }
+
+        File filePets = new File("src/petsCadastrados/PETSGERAL.txt");
+        String petsAnteriores = "";
+
+        try (FileReader fr = new FileReader(filePets);
+        BufferedReader br = new BufferedReader(fr)) {
+            String line;
+            while ((line = br.readLine()) != null){
+                if (!line.contains(fileName)){
+                    petsAnteriores += line + "\n";
+                }
+            }
+
+            try (FileWriter fw = new FileWriter(filePets);
+            BufferedWriter bw = new BufferedWriter(fw)){
+                bw.write(petsAnteriores);
+            }
+        }catch (IOException e){
+            System.out.println("Erro ao atualizar lista de pets. " + e.getMessage());
+        }
+
+        Menu.exibirMenu();
     }
 
     public static void renomearArquivoPet(Pet pet, File fileAntigo){
