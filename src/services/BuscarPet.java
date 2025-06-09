@@ -57,7 +57,7 @@ public class BuscarPet {
         Scanner input = new Scanner(System.in);
         String [] atributosPets = new String[] {BuscaPet.NOME_E_SOBRENOME.getINFO(), BuscaPet.SEXO.getINFO(), BuscaPet.IDADE.getINFO(), BuscaPet.PESO.getINFO(), BuscaPet.RACA.getINFO(), BuscaPet.ENDERECO.getINFO()};
         int opcao;
-        String atributoEscolhido2 = "";
+        String atributoEscolhido2;
 
         do {
             System.out.println("Selecione outro criterio: ");
