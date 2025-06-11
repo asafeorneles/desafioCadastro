@@ -115,7 +115,7 @@ public class SalvarPet {
         } catch (IOException e) {
             System.out.println("Erro ao atualizar pet " + e.getMessage());
         }
-        renomearArquivoPet(pet, file);
+        Menu.exibirMenu();
     }
 
     public static void deletarPet(String fileName) {
@@ -151,27 +151,28 @@ public class SalvarPet {
         Menu.exibirMenu();
     }
 
-    public static void renomearArquivoPet(Pet pet, File fileAntigo) {
-        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmm");
-        LocalDateTime now = LocalDateTime.now();
-
-        String[] nomes = pet.getNomeCompleto().split("\\s");
-        String nomePetUpper = "";
-        for (String nome : nomes) {
-            nomePetUpper += nome.toUpperCase();
-        }
-        String fileName = (now.format(df) + "-" + nomePetUpper + ".TXT");
-        String filePathName = ("src/petsCadastrados/" + fileName);
-
-        File fileRenomed = new File(filePathName);
-        boolean isFileRenomed = fileAntigo.renameTo(fileRenomed);
-        if (isFileRenomed) {
-            System.out.println("Pet atualizado com sucesso!!");
-        } else {
-            System.out.println("Erro ao atualizar arquivo do pet");
-        }
-
-        Menu.exibirMenu();
-    }
+    // Funcao desativada para manter o nome antigo do pet.
+//    public static void renomearArquivoPet(Pet pet, File fileAntigo) {
+//        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmm");
+//        LocalDateTime now = LocalDateTime.now();
+//
+//        String[] nomes = pet.getNomeCompleto().split("\\s");
+//        String nomePetUpper = "";
+//        for (String nome : nomes) {
+//            nomePetUpper += nome.toUpperCase();
+//        }
+//        String fileName = (now.format(df) + "-" + nomePetUpper + ".TXT");
+//        String filePathName = ("src/petsCadastrados/" + fileName);
+//
+//        File fileRenomed = new File(filePathName);
+//        boolean isFileRenomed = fileAntigo.renameTo(fileRenomed);
+//        if (isFileRenomed) {
+//            System.out.println("Pet atualizado com sucesso!!");
+//        } else {
+//            System.out.println("Erro ao atualizar arquivo do pet");
+//        }
+//
+//        Menu.exibirMenu();
+//    }
 
 }

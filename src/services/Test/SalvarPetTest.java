@@ -110,7 +110,7 @@ public class SalvarPetTest {
         }catch (IOException e){
             System.out.println("Erro ao atualizar pet " + e.getMessage());
         }
-        renomearArquivoPet(pet, file);
+//        renomearArquivoPet(pet, file);
     }
 
     public static void deletarPet(String fileName){
